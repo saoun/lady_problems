@@ -11,6 +11,27 @@
 
   <tbody>
     <% @users.each do |user| %>
+    <h1>
+      <%= user.name%>
+    </h1>
+    <ul>
+      <li>
+        bio : <%= user.bio %>
+      </li>
+        email : <%= user.email %>
+      <li>
+        location: <%= user.location%>
+      </li>
+      <li>
+        area of interest: <%= user.area_of_interest%>
+      </li>
+      <li>
+        years of expertise: <%= user.years_of_expertise%>
+      </li>
+      <li>
+        past employment: <%= user.past_employment%>
+      </li>
+    </ul>
       <tr>
         <td><%= link_to 'Show', user %></td>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
