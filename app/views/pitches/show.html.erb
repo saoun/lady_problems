@@ -1,4 +1,13 @@
 <p id="notice"><%= notice %></p>
 
+<h1>Project</h1>
+<%= @pitch.title%>
+<h2>Description</h2>
+<%= @pitch.description%><br>
+<h2>Category</h2>
+<%= @pitch.category%><br>
+<h2>Looking For?</h2>
+<%= @pitch.looking_for%>
+
 <%= link_to 'Edit', edit_pitch_path(@pitch) %> |
 <%= link_to 'Back', pitches_path %>
