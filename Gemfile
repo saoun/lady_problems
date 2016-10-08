@@ -29,7 +29,9 @@ gem 'jbuilder', '~> 2.5'
 gem 'dotenv-rails'
 gem 'httparty'
 gem 'faker'
-gem ''
+gem 'omniauth-linkedin-oauth2'
+gem 'omniauth-github'
+gem 'omniauth-twitter'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
