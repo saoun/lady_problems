@@ -32,6 +32,8 @@ gem 'faker'
 gem 'omniauth-linkedin-oauth2'
 gem 'omniauth-github'
 gem 'omniauth-twitter'
+gem 'ransack', github: 'activerecord-hackery/ransack'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
