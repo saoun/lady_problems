@@ -28,7 +28,8 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'dotenv-rails'
 gem 'httparty'
-
+gem 'faker'
+gem ''
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
