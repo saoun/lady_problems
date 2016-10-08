@@ -69,6 +69,6 @@ class PitchesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pitch_params
-      params.fetch(:pitch, {})
+      params.fetch(:pitch).permit(:user_id, :title, :description, :category, :looking_for)
     end
 end
