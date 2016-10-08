@@ -9,9 +9,9 @@ class User < ApplicationRecord
     create! do |user|
       user.provider = auth["provider"]
       user.uid = auth["uid"] #user's github user id
-      #byebug
-      # user.email = auth["info"]["email"]
-      # user.image = auth["info"]["image"]
+      byebug
+      user.email = auth["info"]["email"]
+      user.image = auth["info"]["image"]
     end
   end
 
