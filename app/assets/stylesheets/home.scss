@@ -1,15 +1,10 @@
 // Place all the styles related to the Home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
-.intro0 {
-
-}
-
-
-.intro1 {
-  // position: fixed;
-  margin: 0;
+.container {
+  margin: 0 auto;
+  text-align: center;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -17,10 +12,21 @@
   background: #F5F5F5;
 }
 
-.container {
-  margin: 0 auto;
-  text-align: center;
+
+.intro0 {
+
 }
+
+
+// .intro1 {
+//   position: fixed;
+//   margin: 0;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 100%;
+//   background: #F5F5F5;
+// }
 
 .intro1 h1 {
   font-weight: 300;
