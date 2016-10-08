@@ -2,8 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.intro0 {
+
+}
+
+
 .intro1 {
-  position: fixed;
+  // position: fixed;
   margin: 0;
   top: 0;
   left: 0;
@@ -13,7 +18,7 @@
 }
 
 .container {
-  margin: 200px auto;
+  margin: 0 auto;
   text-align: center;
 }
 
@@ -21,6 +26,7 @@
   font-weight: 300;
   color: #383737;
   margin-bottom: 40px;
+  margin-top: 200px;
 }
 
 .intro1 a {
