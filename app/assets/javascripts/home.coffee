@@ -4,3 +4,5 @@
 
 ready = () ->
   $('.carousel.carousel-slider').carousel({full_width: true});
+
+$(document).on('turbolinks:load', ready)
