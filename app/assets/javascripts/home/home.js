@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 console.log("home.js is working!")
 
 $(document).ready(function()
@@ -18,3 +19,9 @@ $(document).ready(function()
 
 
 
+=======
+$(document).ready(function(){
+  console.log("hi");
+      $('.carousel.carousel-slider').carousel({full_width: true});
+    });
+>>>>>>> b165defcf94b276b2ddfbe215eb81c68505d40d1
