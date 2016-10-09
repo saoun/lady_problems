@@ -1,41 +1,32 @@
-// Place all the styles related to the Home controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-.container {
-  margin: 0 auto;
+// // Place all the styles related to the Home controller here.
+// // They will automatically be included in application.css.
+// // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.intro {
   text-align: center;
-  // position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #F5F5F5;
-}
-
-
-.intro0 {
+  margin-top: 60px;
   max-width: 900px;
-  margin: 0 auto;
-}
-
-
-// .intro1 {
-//   position: fixed;
-//   margin: 0;
-//   top: 0;
-//   left: 0;
-//   width: 100%;
-//   height: 100%;
-//   background: #F5F5F5;
-// }
-
-.intro1 h1 {
+  margin: auto;
   font-weight: 300;
-  color: #383737;
-  margin-bottom: 40px;
-  margin-top: 200px;
 }
 
-.intro1 a {
-  margin-right: 20px;
+.intro h1, h2, h3 {
+  border-radius: 8px;
+  font-weight: 300;
 }
+
+.button {
+    background-color: #FFC107;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+
