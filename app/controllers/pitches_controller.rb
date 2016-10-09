@@ -3,6 +3,7 @@ class PitchesController < ApplicationController
 
   # GET /pitches
   # GET /pitches.json
+  include PitchesHelper
   def index
     @pitches = Pitch.all
   end
@@ -10,6 +11,10 @@ class PitchesController < ApplicationController
   # GET /pitches/1
   # GET /pitches/1.json
   def show
+    @pitch = Pitch.find_by_id(params[:id])
+
+    @feedback_list = Feedback.where(pitch_id: params[:id]).order('id DESC')
+    @feedback = Feedback.new
   end
 
   # GET /pitches/new
@@ -24,8 +29,16 @@ class PitchesController < ApplicationController
   # POST /pitches
   # POST /pitches.json
   def create
-    @pitch = Pitch.new(pitch_params)
 
+    # if current_user
+    # Pitch.create(user_id: current_user.id, title: params[:title], description: params[:description], category: params[:category], looking_for: params[:looking_for])
+    # redirect_to '/pitches'
+    # else
+    #   redirect_to '/pitches/new'
+    # end
+    data = params[:pitch]
+    @pitch = Pitch.new(pitch_params(data))
+    # @pitch.save
     respond_to do |format|
       if @pitch.save
         format.html { redirect_to @pitch, notice: 'Pitch was successfully created.' }
@@ -54,6 +67,8 @@ class PitchesController < ApplicationController
   # DELETE /pitches/1
   # DELETE /pitches/1.json
   def destroy
+    Feedback.where(pitch_id: @pitch.id).destroy_all
+
     @pitch.destroy
     respond_to do |format|
       format.html { redirect_to pitches_url, notice: 'Pitch was successfully destroyed.' }
@@ -68,7 +83,19 @@ class PitchesController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def pitch_params
-      params.fetch(:pitch, {})
+    def pitch_params data
+      data[:looking_for].delete("0")
+      params = ActionController::Parameters.new({
+      pitch: {
+        user_id: current_user.id,
+        title: data[:title],
+        description: data[:description],
+        category: data[:category],
+        looking_for: data[:looking_for].to_s
+      }
+    })
+
+      params.require(:pitch).permit(:user_id, :title, :description, :category, :looking_for)
+      #params.fetch(:pitch).permit(:user_id, :title, :description, :category, :looking_for)
     end
 end

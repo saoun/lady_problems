@@ -4,6 +4,8 @@ class BoardsController < ApplicationController
   # GET /boards
   # GET /boards.json
   def index
+    @q = Board.ransack(params[:q])
+    @searchResults = @q.result
     @boards = Board.all
   end
 
@@ -25,6 +27,8 @@ class BoardsController < ApplicationController
   # POST /boards.json
   def create
     @board = Board.new(board_params)
+    @board.owners = current_user
+    @board.save
 
     respond_to do |format|
       if @board.save
@@ -65,10 +69,12 @@ class BoardsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_board
       @board = Board.find(params[:id])
+      @q = Post.ransack(params[:q])
+      @searchResults = @q.result
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def board_params
-      params.fetch(:board, {})
+      params.require(:board).permit(:category, :title)
     end
 end

@@ -12,6 +12,20 @@
   <% end %>
 
   <div class="actions">
+
+    Name: <%= f.text_field :name, value: current_user.name %><br>
+    Bio: <%= f.text_area :bio, placeholder: "I'm just so excited to be here!" %><br>
+    Email: <%= f.text_field :email, value: current_user.email %><br>
+    Location: <%= f.text_field :location, value: current_user.location %><br>
+    Area of Interest: <%= f.text_field :area_of_interest, value: current_user.area_of_interest %><br>
+    Past Employment: <%= f.text_field :past_employment, value: current_user.past_employment %><br>
+    Years of Expertise: <%= f.text_field :years_of_expertise, value: current_user.years_of_expertise %><br>
+    Twitter: <%= f.text_field :twitter_link, placeholder: "url", value: current_user.twitter_link %><br>
+    Linked In: <%= f.text_field :linked_in_link, placeholder: "url", value: current_user.linked_in_link %><br>
+    Github: <%= f.text_field :github_link, placeholder: "url", value: current_user.github_link %><br>
+    Facebook: <%= f.text_field :facebook_link, placeholder: "url", value: current_user.facebook_link %><br>
+    Ethnicity: <%= f.text_field :ethnicity, placeholder: "", value: current_user.ethnicity %><br>
+    Orientation: <%= f.text_field :orientation, placeholder: "", value: current_user.orientation %><br>
     <%= f.submit %>
   </div>
 <% end %>
