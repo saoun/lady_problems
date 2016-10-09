@@ -15,4 +15,14 @@
 //= require turbolinks
 //= require_tree .
 
+<<<<<<< HEAD
 console.log("application.js is loaded!")
+=======
+$(document).ready(function(){
+  console.log("hi");
+      $('.carousel').carousel();
+      $('.carousel-slider').slider({full_width: true});
+    });
+
+
+>>>>>>> 08a043914ed70f9f596b2634967462829a3e9147
