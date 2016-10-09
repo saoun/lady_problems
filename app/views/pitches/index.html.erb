@@ -15,8 +15,8 @@
 
     <div class = "pitch_index_wrapper">
     <h2 class = "pitch_index_title"><%=pitch.title%></h2>
-    <p class = "pitch_index_show"><%=pitch.description%></p>
-    <p class = "pitch_index_author">by <%=pitch.user.name%></p>
+    <p class = "pitch_index_show">Project Description: <%=pitch.description%></p>
+    <p class = "pitch_index_author">Project by <%=pitch.user.name%></p>
       <ul>
         <button><%= link_to 'Show', pitch %></button>
         <button><%= link_to 'Edit', edit_pitch_path(pitch) %></button>

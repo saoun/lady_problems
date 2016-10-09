@@ -2,11 +2,32 @@
 
 <h1><%= @board.title%></h1>
 <%= link_to 'Edit', edit_board_path(@board) %>
+<br>
+<br>
+<h1> Search Posts </h1>
+<%= render "postssearch" %>
+  <% if @searchResults %>
+  <h4>Search Results:</h4>
+  <ul>
+    <% @searchResults.each do |post|%>
+    <li>
+      <%= post.title %>
+    </li>
+    <li>
+      <%= post.content %>
+    </li>
+    <li>
+      <%= post.board.title %>
+    </li>
+  </ul>
+  <% end %>
+<% end %>
 
+<h3>Posts in <a href="/boards/<%=@board.id%>"><%=@board.title%></a></h3>
 <% @board.posts.each do |post| %>
   <div>
     <h3>
-      <%= post.post_type %> 
+      <%= post.post_type %>
     </h3>
     <h4>
       <%= post.title %>
@@ -23,7 +44,6 @@
 <br>
 <br>
 <%= link_to "Add new post", new_board_post_path(@board, @post) %>
-<h3>Posts in this Board</h3>
 
 <br>
 <br>
