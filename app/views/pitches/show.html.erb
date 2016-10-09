@@ -7,9 +7,24 @@
 <h2>Category</h2>
 <%= @pitch.category%><br>
 <h2>Looking For?</h2>
-<% @pitch.looking_for.tr('[]""', '').split(',').each do |skill|%>
+<% if @pitch.looking_for %>
+  <% @pitch.looking_for.tr('[]""', '').split(',').each do |skill|%>
   <%=skill.upcase%>
+  <% end %>
 <% end %>
+<hr>
+
+<div class ="feedback_form">
+<%= render 'comments/form' %>
+</div>
+
+<div class ="project_feedback_wrapper">
+<% @feedback_list.each do |feedback| %>
+  <div class = "feedback_content"><%=feedback[:content]%></div>
+<% end %>
+
+</div>
+
 <hr>
 <%= link_to 'Edit', edit_pitch_path(@pitch) %> |
 <%= link_to 'Back', pitches_path %>
