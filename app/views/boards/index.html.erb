@@ -12,10 +12,10 @@
   <tbody>
     <% @boards.each do |board| %>
       <tr>
-        <td><%= board.title%></td><br>
-        <td><%= link_to 'Show', board %></td>
-        <td><%= link_to 'Edit', edit_board_path(board) %></td>
-        <td><%= link_to 'Destroy', board, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <!-- <td><%= board.title%></td><br> -->
+        <td><%= link_to board.title, board %></td>
+        <!-- <td><%= link_to 'Edit', edit_board_path(board) %></td> -->
+        <!-- <td><%= link_to 'Destroy', board, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
       </tr>
     <% end %>
   </tbody>
