@@ -49,7 +49,7 @@ class PostsController < ApplicationController
   def update
     respond_to do |format|
       if @post.update(post_params)
-        format.html { redirect_to @board, notice: 'Post was successfully updated.' }
+        format.html { redirect_to board_posts_path, notice: 'Post was successfully updated.' }
         format.json { render :show, status: :ok, location: @board }
       else
         format.html { render :edit }
@@ -63,7 +63,7 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     respond_to do |format|
-      format.html { redirect_to boards_path, notice: 'Post was successfully destroyed.' }
+      format.html { redirect_to board_posts_path, notice: 'Post was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
