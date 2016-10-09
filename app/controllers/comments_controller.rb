@@ -14,7 +14,17 @@ class CommentsController < ApplicationController
 
   # GET /comments/new
   def new
-    @comment = Comment.new
+    @feedback = @board.feedbacks.create(feedback_params)
+    respond_to do |format|
+      if @feedback.save
+        format.html { redirect_to @feedback, notice: 'Feedback was successfully created.' }
+        format.json { render :show, status: :created, location: @feedback }
+      else
+        format.html { render :new }
+        format.json { render json: @feedback.errors, status: :unprocessable_entity }
+      end
+    end
+    redirect_to board_path
   end
 
   # GET /comments/1/edit

@@ -14,17 +14,18 @@ class FeedbacksController < ApplicationController
   # POST /feedbacks
   # POST /feedbacks.json
   def create
-    @feedback = @board.feedbacks.create(feedback_params)
+    data = params[:feedback]
+    @feedback = Feedback.new(feedback_params(data))
+    # @pitch.save
     respond_to do |format|
       if @feedback.save
-        format.html { redirect_to @feedback, notice: 'Feedback was successfully created.' }
+        format.html { redirect_to "/pitches/#{data[:pitch_id]}", notice: 'Feedback was successfully created.' }
         format.json { render :show, status: :created, location: @feedback }
       else
-        format.html { render :new }
+        format.html { render "/pitches/#{data[:pitch_id]}" }
         format.json { render json: @feedback.errors, status: :unprocessable_entity }
       end
     end
-    redirect_to board_path
   end
 
   # PATCH/PUT /feedbacks/1
@@ -44,9 +45,11 @@ class FeedbacksController < ApplicationController
   # DELETE /feedbacks/1
   # DELETE /feedbacks/1.json
   def destroy
+
+    pitch = Feedback.find_by(id: params[:id]).pitch.id
     @feedback.destroy
     respond_to do |format|
-      format.html { redirect_to feedbacks_url, notice: 'Feedback was successfully destroyed.' }
+      format.html { redirect_to "/pitches/#{pitch}"}
       format.json { head :no_content }
     end
   end
@@ -54,11 +57,18 @@ class FeedbacksController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_feedback
-      @feedback = Feedback.find(params[:id])
+      @feedback = Feedback.find(params[:id]) || nil
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def feedback_params
-      params.require(:feedback).permit(:content)
+    def feedback_params data
+      params = ActionController::Parameters.new({
+      feedback: {
+        user_id: current_user.id,
+        pitch_id: data[:pitch_id],
+        content: data[:content]
+      }
+    })
+      params.require(:feedback).permit(:user_id, :pitch_id, :content)
     end
 end

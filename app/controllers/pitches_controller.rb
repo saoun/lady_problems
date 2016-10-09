@@ -13,6 +13,8 @@ class PitchesController < ApplicationController
   def show
     @pitch = Pitch.find_by_id(params[:id])
 
+    @feedback_list = Feedback.where(pitch_id: params[:id]).order('id DESC')
+    @feedback = Feedback.new
   end
 
   # GET /pitches/new
@@ -81,7 +83,6 @@ class PitchesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def pitch_params data
       data[:looking_for].delete("0")
-      byebug
       params = ActionController::Parameters.new({
       pitch: {
         user_id: current_user.id,
