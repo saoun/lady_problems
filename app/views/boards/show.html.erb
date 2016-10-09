@@ -2,16 +2,14 @@
 
 <h1><%= @board.title%></h1>
 <%= link_to 'Edit', edit_board_path(@board) %>
-<br>
-<br>
-<%= link_to "Add new post", new_board_post_path(@board, @post) %>
-<h3>Posts in this Board</h3>
+
 <% @board.posts.each do |post| %>
   <div>
-    <time>Updated <%= post.updated_at %></time>
     <h4>
       <%= post.title %>
     </h4>
+    <h3>
+      Created by <%= current_user.name%>
     <p>
       <%= post.content %>
     </p>
@@ -19,6 +17,11 @@
     <%= link_to "Delete", board_post_path(@board, post), method: :delete %>
   </div>
 <% end %>
+<br>
+<br>
+<%= link_to "Add new post", new_board_post_path(@board, @post) %>
+<h3>Posts in this Board</h3>
+
 <br>
 <br>
 <%= link_to 'Back', boards_path %>
