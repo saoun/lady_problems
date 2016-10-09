@@ -1,17 +1,6 @@
 class FeedbacksController < ApplicationController
   before_action :set_feedback, only: [:show, :edit, :update, :destroy]
 
-  # GET /feedbacks
-  # GET /feedbacks.json
-  def index
-    @feedbacks = Feedback.all
-  end
-
-  # GET /feedbacks/1
-  # GET /feedbacks/1.json
-  def show
-  end
-
   # GET /feedbacks/new
   def new
     @feedback = Feedback.new
@@ -19,13 +8,13 @@ class FeedbacksController < ApplicationController
 
   # GET /feedbacks/1/edit
   def edit
+    @feedback = Feedback.find(params[:id])
   end
 
   # POST /feedbacks
   # POST /feedbacks.json
   def create
-    @feedback = Feedback.new(feedback_params)
-
+    @feedback = @board.feedbacks.create(feedback_params)
     respond_to do |format|
       if @feedback.save
         format.html { redirect_to @feedback, notice: 'Feedback was successfully created.' }
@@ -35,6 +24,7 @@ class FeedbacksController < ApplicationController
         format.json { render json: @feedback.errors, status: :unprocessable_entity }
       end
     end
+    redirect_to board_path
   end
 
   # PATCH/PUT /feedbacks/1
@@ -69,6 +59,6 @@ class FeedbacksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def feedback_params
-      params.fetch(:feedback, {})
+      params.require(:feedback).permit(:content)
     end
 end
