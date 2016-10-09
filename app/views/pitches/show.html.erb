@@ -7,14 +7,9 @@
 <h2>Category</h2>
 <%= @pitch.category%><br>
 <h2>Looking For?</h2>
-<<<<<<< HEAD
 <% @pitch.looking_for.tr('[]""', '').split(',').each do |skill|%>
   <%=skill.upcase%>
 <% end %>
 <hr>
-=======
-<%= @pitch.looking_for%>
-<%= link_to "Add Feedback", 
->>>>>>> 8021396342c293c22762705f0509d223e470c3fe
 <%= link_to 'Edit', edit_pitch_path(@pitch) %> |
 <%= link_to 'Back', pitches_path %>
