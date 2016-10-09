@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.all.order('id DESC')
   end
 
 
@@ -76,7 +76,7 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      byebug
+
       params.require(:post).permit(:title, :content, :post_type)
     end
 end
