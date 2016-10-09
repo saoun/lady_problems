@@ -12,23 +12,19 @@
  *
  *= require_tree .
  *= require_self
- */
+/* */
 
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-}
-
-.clearfix:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-body {
+.container h1, h2, h3, h4, h5, h6, a{
   font-family: 'Open Sans', sans-serif;
-  color: #333;
-  margin: 0;
-  padding-top: 100px;
+  font-weight: 300;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.container {
+  margin-top: 120px;
+}
+
+.row {
+  text-align: center;
 }
