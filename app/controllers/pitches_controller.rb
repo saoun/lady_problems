@@ -3,6 +3,7 @@ class PitchesController < ApplicationController
 
   # GET /pitches
   # GET /pitches.json
+  include PitchesHelper
   def index
     @pitches = Pitch.all
   end
@@ -10,6 +11,8 @@ class PitchesController < ApplicationController
   # GET /pitches/1
   # GET /pitches/1.json
   def show
+    @pitch = Pitch.find_by_id(params[:id])
+
   end
 
   # GET /pitches/new
@@ -25,25 +28,24 @@ class PitchesController < ApplicationController
   # POST /pitches.json
   def create
 
-    if current_user
-    Pitch.create(user_id: current_user.id, title: params[:title], description: params[:description], category: params[:category], looking_for: params[:looking_for])
-    redirect_to '/pitches'
-    else
-      redirect_to '/pitches/new'
-    end
-
-    # @pitch = Pitch.new(pitch_params)
-    # @pitch.save
-
-    # respond_to do |format|
-    #   if @pitch.save
-    #     format.html { redirect_to @pitch, notice: 'Pitch was successfully created.' }
-    #     format.json { render :show, status: :created, location: @pitch }
-    #   else
-    #     format.html { render :new }
-    #     format.json { render json: @pitch.errors, status: :unprocessable_entity }
-    #   end
+    # if current_user
+    # Pitch.create(user_id: current_user.id, title: params[:title], description: params[:description], category: params[:category], looking_for: params[:looking_for])
+    # redirect_to '/pitches'
+    # else
+    #   redirect_to '/pitches/new'
     # end
+    data = params[:pitch]
+    @pitch = Pitch.new(pitch_params(data))
+    # @pitch.save
+    respond_to do |format|
+      if @pitch.save
+        format.html { redirect_to @pitch, notice: 'Pitch was successfully created.' }
+        format.json { render :show, status: :created, location: @pitch }
+      else
+        format.html { render :new }
+        format.json { render json: @pitch.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # PATCH/PUT /pitches/1
@@ -77,9 +79,20 @@ class PitchesController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def pitch_params
+    def pitch_params data
+      data[:looking_for].delete("0")
+      byebug
+      params = ActionController::Parameters.new({
+      pitch: {
+        user_id: current_user.id,
+        title: data[:title],
+        description: data[:title],
+        category: data[:category],
+        looking_for: data[:looking_for].to_s
+      }
+    })
 
-      params.require(:pitch).permit(:title, :description, :category, :looking_for)
-      #params.fetch(:pitch, {})
+      params.require(:pitch).permit(:user_id, :title, :description, :category, :looking_for)
+      #params.fetch(:pitch).permit(:user_id, :title, :description, :category, :looking_for)
     end
 end
