@@ -14,6 +14,21 @@
  *= require_self
  */
 
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
 body {
   font-family: 'Open Sans', sans-serif;
+  color: #333;
+  margin: 0;
+  padding-top: 100px;
 }
