@@ -69,6 +69,8 @@ class BoardsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_board
       @board = Board.find(params[:id])
+      @q = Post.ransack(params[:q])
+      @searchResults = @q.result
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
