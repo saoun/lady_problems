@@ -14,7 +14,10 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
+
+    @user_data = current_user ? User.where(id: current_user.id) : nil;
     @user = User.new
+
   end
 
   # GET /users/1/edit
@@ -24,7 +27,9 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(user_params)
+
+    data = params[:user]
+    @user = User.new(user_params(data))
 
     respond_to do |format|
       if @user.save
@@ -40,8 +45,9 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    data = params[:user]
     respond_to do |format|
-      if @user.update(user_params)
+      if @user.update(user_params(data))
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
@@ -68,7 +74,26 @@ class UsersController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def user_params
-      params.fetch(:user, {})
+    def user_params data
+      params = ActionController::Parameters.new({
+        user: {
+          name: data[:name],
+          bio: data[:bio],
+          email: data[:email],
+          location: data[:location],
+          area_of_interest: data[:area_of_interest],
+          years_of_expertise: data[:years_of_expertise],
+          past_employment: data[:past_employment],
+          twitter_link: data[:twitter_link],
+          linked_in_link: data[:linked_in_link],
+          github_link: data[:github_link],
+          facebook_link: data[:facebook_link],
+          ethnicity: data[:ethnicity],
+          orientation: data[:orientation]
+        }
+      })
+
+      params.require(:user).permit(:name, :bio, :email, :location, :area_of_interest, :years_of_expertise, :past_employment, :twitter_link, :linked_in_link, :github_link, :facebook_link, :ethnicity, :orientation)
+      #params.fetch(:user, {})
     end
 end

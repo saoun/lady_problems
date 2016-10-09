@@ -2,6 +2,7 @@
 
 <h1>Boards</h1>
 
+
 <table>
   <thead>
     <tr>
@@ -12,9 +13,10 @@
   <tbody>
     <% @boards.each do |board| %>
       <tr>
-        <td><%= link_to 'Show', board %></td>
-        <td><%= link_to 'Edit', edit_board_path(board) %></td>
-        <td><%= link_to 'Destroy', board, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <!-- <td><%= board.title%></td><br> -->
+        <td><%= link_to board.title, board %></td>
+        <!-- <td><%= link_to 'Edit', edit_board_path(board) %></td> -->
+        <!-- <td><%= link_to 'Destroy', board, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
       </tr>
     <% end %>
   </tbody>
@@ -22,4 +24,16 @@
 
 <br>
 
-<%= link_to 'New Board', new_board_path %>
+
+<h3>Search</h3>
+  <%= render 'advancedsearch' %>
+<h5>Search Results:</h5>
+<ul>
+  <%@searchResults.each do |board| %>
+    <li>
+      <%= board.title %>
+    </li>
+  <% end %>
+</ul>
+
+  <%= link_to 'New Board', new_board_path %>

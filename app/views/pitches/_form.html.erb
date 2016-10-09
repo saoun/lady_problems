@@ -1,6 +1,8 @@
-<%= form_for(pitch) do |f| %>
+<div class="container">
+<%= form_for(@pitch) do |f| %>
   <% if pitch.errors.any? %>
     <div id="error_explanation">
+
       <h2><%= pluralize(pitch.errors.count, "error") %> prohibited this pitch from being saved:</h2>
 
       <ul>
@@ -12,6 +14,21 @@
   <% end %>
 
   <div class="actions">
+  TITLE:<%= f.text_field :title %><br>
+  DESCRIPTION:<%= f.text_area :description %><br>
+  CATEGORY:<%= f.text_field :category %><br>
+  LOOKING FOR:
+      <br>
+    <% skills_array.each do |skill| %>
+      <%= f.check_box :looking_for, {:multiple => true}, skill.tr('_/ ', '').capitalize %>
+      <%= label :pitch_looking_for, skill.tr('_ ', '').downcase  %>
+      <br>
+    <% end %>
+  <br>
+      <div class= "waves-effect waves-light btn">
     <%= f.submit %>
+        </div>
   </div>
 <% end %>
+</div>
+
