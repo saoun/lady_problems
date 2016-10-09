@@ -1,10 +1,5 @@
 class HomeController < ApplicationController
 
-def
-
-
-
-
 
 
 
