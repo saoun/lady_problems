@@ -67,6 +67,8 @@ class PitchesController < ApplicationController
   # DELETE /pitches/1
   # DELETE /pitches/1.json
   def destroy
+    Feedback.where(pitch_id: @pitch.id).destroy_all
+
     @pitch.destroy
     respond_to do |format|
       format.html { redirect_to pitches_url, notice: 'Pitch was successfully destroyed.' }
@@ -87,7 +89,7 @@ class PitchesController < ApplicationController
       pitch: {
         user_id: current_user.id,
         title: data[:title],
-        description: data[:title],
+        description: data[:description],
         category: data[:category],
         looking_for: data[:looking_for].to_s
       }
