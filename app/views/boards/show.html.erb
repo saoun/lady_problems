@@ -5,6 +5,9 @@
 
 <% @board.posts.each do |post| %>
   <div>
+    <h3>
+      <%= post.post_type %> 
+    </h3>
     <h4>
       <%= post.title %>
     </h4>

@@ -12,6 +12,8 @@
   <% end %>
 
   <div class="actions">
+    <%= f.label :type %>
+    <%= f.select :post_type, [['#INTRO'], ['#ASKS'], ['#OFFERS']]%><br>
     <%= f.label :title %>
     <%= f.text_area :title %><br>
     <%= f.label :content %>
