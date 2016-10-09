@@ -16,13 +16,13 @@
     <% @pitches.each do |pitch| %>
 
     <div class = "pitch_index_wrapper">
-    <h2 class = "pitch_index_title"><%=pitch.title%></h2>
-    <p class = "pitch_index_show">Project Description: <%=pitch.description%></p>
-    <p class = "pitch_index_author">Project by <%=pitch.user.name%></p>
+    <h4 class = "pitch_index_title"><%=pitch.title%></h4>
+    <p class = "pitch_index_show"><strong>Project Description:</strong> <%=pitch.description%></p>
+    <p class = "pitch_index_author"><strong>Project by</strong> <%=pitch.user.name%></p>
       <ul>
         <button><%= link_to 'Show', pitch %></button>
         <button><%= link_to 'Edit', edit_pitch_path(pitch) %></button>
-        <button><%= link_to 'Destroy', pitch, method: :delete, data: { confirm: 'Are you sure?' } %></button>
+        <button><%= link_to 'Delete', pitch, method: :delete, data: { confirm: 'Are you sure?' } %></button>
       </ul>
     </div>
     <hr>
@@ -33,5 +33,5 @@
 <br>
 <div class="newPitch waves-effect waves-light btn-large">
 <%= link_to 'New Project', new_pitch_path %>
-
+</div>
 </div>
