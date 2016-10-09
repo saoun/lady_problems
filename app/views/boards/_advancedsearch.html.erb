@@ -1,0 +1,9 @@
+<div>
+  <%= search_form_for @q do |f| %>
+      <%= f.label :title_cont %>
+      <%= f.search_field :title_cont %>
+      <%= f.label :category_cont %>
+      <%= f.search_field :category_cont %>
+    <%= f.submit %>
+  <% end %>
+</div>

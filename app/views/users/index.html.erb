@@ -16,27 +16,35 @@
     </h1>
     <ul>
       <li>
-        bio : <%= user.bio %>
+        Bio : <%= user.bio %>
       </li>
-        email : <%= user.email %>
+        Email : <%= user.email %>
       <li>
-        location: <%= user.location%>
+        Location: <%= user.location%>
       </li>
       <li>
-        area of interest: <%= user.area_of_interest%>
+        Area of Interest: <%= user.area_of_interest%>
+      </li>
+      <li>
+        Past Employment: <%= user.past_employment%>
       </li>
       <li>
         years of expertise: <%= user.years_of_expertise%>
       </li>
       <li>
-        past employment: <%= user.past_employment%>
+        Ethnicity: <%= user.ethnicity%>
+      </li>
+      <li>
+        Orientation: <%= user.orientation%>
       </li>
     </ul>
-      <tr>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <ul>
+        <button><%= link_to 'Show', user %></button>
+        <% if current_user == user %>
+        <button><%= link_to 'Edit', edit_user_path(user) %></button>
+        <button><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></button>
+        <% end %>
+      </ul>
     <% end %>
   </tbody>
 </table>

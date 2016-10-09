@@ -4,12 +4,9 @@ class BoardsController < ApplicationController
   # GET /boards
   # GET /boards.json
   def index
+    @q = Board.ransack(params[:q])
+    @searchResults = @q.result
     @boards = Board.all
-    if params[:search]
-      @boards = Board.search(params[:search]).order("created_at DESC")
-    else
-      @boards = Board.all.order('created_at DESC')
-    end
   end
 
   # GET /boards/1
@@ -72,6 +69,8 @@ class BoardsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_board
       @board = Board.find(params[:id])
+      @q = Post.ransack(params[:q])
+      @searchResults = @q.result
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
