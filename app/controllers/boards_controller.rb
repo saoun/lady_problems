@@ -5,6 +5,11 @@ class BoardsController < ApplicationController
   # GET /boards.json
   def index
     @boards = Board.all
+    if params[:search]
+      @boards = Board.search(params[:search]).order("created_at DESC")
+    else
+      @boards = Board.all.order('created_at DESC')
+    end
   end
 
   # GET /boards/1
@@ -25,6 +30,8 @@ class BoardsController < ApplicationController
   # POST /boards.json
   def create
     @board = Board.new(board_params)
+    @board.owners = current_user
+    @board.save
 
     respond_to do |format|
       if @board.save
@@ -35,6 +42,7 @@ class BoardsController < ApplicationController
         format.json { render json: @board.errors, status: :unprocessable_entity }
       end
     end
+    redirect_to board_path
   end
 
   # PATCH/PUT /boards/1
@@ -69,6 +77,6 @@ class BoardsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def board_params
-      params.fetch(:board, {})
+      params.require(:board).permit(:category, :title)
     end
 end
