@@ -7,7 +7,32 @@
 <h2>Category</h2>
 <%= @pitch.category%><br>
 <h2>Looking For?</h2>
-<%= @pitch.looking_for%>
+<% if @pitch.looking_for %>
+  <% @pitch.looking_for.tr('[]""', '').split(',').each do |skill|%>
+  <%=skill.upcase%>
+  <% end %>
+<% end %>
+<hr>
 
+<div class ="feedback_form">
+<%= render 'feedbacks/form' %>
+</div>
+
+<div class ="project_feedback_wrapper">
+  <hr>
+<% if @feedback_list %>
+  <% @feedback_list.each do |feedback| %>
+    <div class = "feedback_content"><%=feedback[:content]%></div>
+    <div class = "feedback_autho">by <%=feedback.user.name%><span> On <%=feedback.created_at%></span></div>
+    <button><%= link_to 'Delete', feedback, method: :delete, data: { confirm: 'Are you sure?' } %></button>
+    <hr>
+    <% end %>
+<% else %>
+  <div class = "feedback_content">No Feedback</div>
+<% end %>
+
+</div>
+
+<hr>
 <%= link_to 'Edit', edit_pitch_path(@pitch) %> |
 <%= link_to 'Back', pitches_path %>

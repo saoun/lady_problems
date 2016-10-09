@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161008211633) do
+ActiveRecord::Schema.define(version: 20161009122809) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 20161008211633) do
     t.string   "content"
     t.integer  "user_id"
     t.integer  "board_id"
+    t.string   "post_type"
     t.index ["board_id"], name: "index_posts_on_board_id", using: :btree
     t.index ["user_id"], name: "index_posts_on_user_id", using: :btree
   end
@@ -100,6 +101,8 @@ ActiveRecord::Schema.define(version: 20161008211633) do
     t.boolean  "finance"
     t.boolean  "business_development"
     t.text     "other"
+    t.string   "ethnicity"
+    t.string   "orientation"
   end
 
   add_foreign_key "comments", "posts"
