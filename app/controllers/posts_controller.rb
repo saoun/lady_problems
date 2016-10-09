@@ -7,6 +7,7 @@ class PostsController < ApplicationController
     @posts = Post.all
   end
 
+
   # GET /posts/1
   # GET /posts/1.json
   def show
@@ -14,27 +15,33 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
+    @board = Board.find(params[:board_id])
     @post = Post.new
   end
 
   # GET /posts/1/edit
   def edit
+    @board = Board.find(params[:board_id])
+    @post = Post.find(params[:id])
   end
 
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(post_params)
-
+    @board = Board.find(params[:board_id])
+    @post = @board.posts.create(post_params)
+    @post.user = current_user
+    @post.board = @board
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
-        format.json { render :show, status: :created, location: @post }
+        format.html { redirect_to @board, notice: 'Post was successfully created.' }
+        format.json { render :show, status: :created, location: @board }
       else
         format.html { render :new }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
+    # redirect_to board_posts_path
   end
 
   # PATCH/PUT /posts/1
@@ -69,6 +76,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.fetch(:post, {})
+      params.require(:post).permit(:title, :content)
     end
 end

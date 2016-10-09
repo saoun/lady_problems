@@ -1,4 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_board_path(@board) %> |
+<h1><%= @board.title%></h1>
+<%= link_to 'Edit', edit_board_path(@board) %>
+<br>
+<br>
+<%= link_to "Add new post", new_board_post_path(@board, @post) %>
+
+<br>
+<br>
 <%= link_to 'Back', boards_path %>
