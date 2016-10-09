@@ -47,9 +47,14 @@ body {
 
 .overlayText {
   position: absolute;
-  top: 200px;
+  top: 100px;
   left:  0;
   width: 100%;
+}
+
+.carousel.carousel-slider .carousel-item h2{
+  color: white;
+  font-size: 40px;
 }
 
 /*
