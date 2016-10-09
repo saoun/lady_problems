@@ -42,7 +42,6 @@ class BoardsController < ApplicationController
         format.json { render json: @board.errors, status: :unprocessable_entity }
       end
     end
-    redirect_to board_path
   end
 
   # PATCH/PUT /boards/1
