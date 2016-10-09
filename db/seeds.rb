@@ -11,7 +11,10 @@ providerArr = ["Twitter", "LinkedIn", "GitHub", "Facebook"]
 
 arrOfTruth = [true, false]
 
-User.delete_all
+Post.destroy_all
+Board.destroy_all
+Pitch.destroy_all
+User.destroy_all
 
 10.times do
 User.create([
@@ -21,7 +24,6 @@ User.create([
     email: Faker::Internet.email,
     bio: Faker::Lorem.sentence,
     img: Faker::Avatar.image,
-    email:Faker::Internet.email,
     location: Faker::Address.city,
     area_of_interest: "#{Faker::Hacker.adjective} #{Faker::Hacker.noun}",
     years_of_expertise: Faker::Number.number(1),
@@ -42,7 +44,35 @@ User.create([
     other: Faker::Hacker.ingverb
   }
 ])
+
+
+  boardCatergoryArr =  ["Jobs", "Internships", "Projects", "Funding"]
+
+  Board.create([
+    owners: "#{rand(10)}",
+    category: boardCatergoryArr[rand(4)],
+    title: Faker::Hacker.say_something_smart
+  ])
+
+
+end
+
+10.times do
+
+
+  pitchCategoryArr = ["Social Justice", "Networking", "Consumer Products"]
+  pitchLookingForArr = ["UI/UX Design", "Developers", "Mentorship", "Support"]
+
+  Pitch.create([
+    title: Faker::Hipster.sentence(5),
+    description:Faker::Hipster.sentences(1),
+    category:pitchCategoryArr[rand(3)],
+    looking_for:pitchLookingForArr[rand(4)],
+    user_id: User.first.id
+  ])
 end
 
 
 puts "Created #{User.count} Users"
+puts "Created #{Board.count} boards"
+puts "Created #{Pitch.count} pitches"
