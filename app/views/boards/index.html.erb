@@ -2,6 +2,7 @@
 
 <h1>Boards</h1>
 
+
 <table>
   <thead>
     <tr>
@@ -23,4 +24,16 @@
 
 <br>
 
-<%= link_to 'New Board', new_board_path %>
+
+<h3>Search</h3>
+  <%= render 'advancedsearch' %>
+<h5>Search Results:</h5>
+<ul>
+  <%@searchResults.each do |board| %>
+    <li>
+      <%= board.title %>
+    </li>
+  <% end %>
+</ul>
+
+  <%= link_to 'New Board', new_board_path %>

@@ -4,12 +4,9 @@ class BoardsController < ApplicationController
   # GET /boards
   # GET /boards.json
   def index
+    @q = Board.ransack(params[:q])
+    @searchResults = @q.result
     @boards = Board.all
-    if params[:search]
-      @boards = Board.search(params[:search]).order("created_at DESC")
-    else
-      @boards = Board.all.order('created_at DESC')
-    end
   end
 
   # GET /boards/1
