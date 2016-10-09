@@ -12,6 +12,15 @@
   <% end %>
 
   <div class="actions">
+    <%= f.label :title %><br>
+    <%= f.text_area :title %>
+    <h4>Please select a category that describes your board</h4>
+    <%= f.label :category %><br>
+    <%= check_box_tag :jobs, checked = true%> Jobs<br>
+    <%= check_box_tag :mentorship, checked = true%> Mentorship<br>
+    <%= check_box_tag :personal_development, checked = true%> Personal Development<br>
+    <%= check_box_tag :funding, checked = true%> Funding<br>
+    <%= hidden_field_tag :user_id, :value => current_user.id %>
     <%= f.submit %>
   </div>
 <% end %>

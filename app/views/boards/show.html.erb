@@ -1,5 +1,9 @@
 <p id="notice"><%= notice %></p>
 
 
+<%= link_to "Add New Post", new_board_post_path(@board) %><br>
+<%#= link_to "Add new comment", new_post_comment_path(@post) %>
+
+
 <%= link_to 'Edit', edit_board_path(@board) %> |
 <%= link_to 'Back', boards_path %>

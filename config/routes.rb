@@ -2,10 +2,12 @@ Rails.application.routes.draw do
   resources :users
 
   resources :boards do
-    resources :posts do
-      resources :comments
-    end
+    resources :posts, :comments
   end
+
+  # do
+  #   resources :comments
+  # end
 
   resources :pitches do
     resources :feedbacks
