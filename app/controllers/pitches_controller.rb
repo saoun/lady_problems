@@ -25,25 +25,25 @@ class PitchesController < ApplicationController
   # POST /pitches.json
   def create
 
-    if current_user
-    Pitch.create(user_id: current_user.id, title: params[:title], description: params[:description], category: params[:category], looking_for: params[:looking_for])
-    redirect_to '/pitches'
-    else
-      redirect_to '/pitches/new'
-    end
+    # if current_user
+    # Pitch.create(user_id: current_user.id, title: params[:title], description: params[:description], category: params[:category], looking_for: params[:looking_for])
+    # redirect_to '/pitches'
+    # else
+    #   redirect_to '/pitches/new'
+    # end
 
-    # @pitch = Pitch.new(pitch_params)
+    @pitch = Pitch.new(pitch_params(params))
     # @pitch.save
 
-    # respond_to do |format|
-    #   if @pitch.save
-    #     format.html { redirect_to @pitch, notice: 'Pitch was successfully created.' }
-    #     format.json { render :show, status: :created, location: @pitch }
-    #   else
-    #     format.html { render :new }
-    #     format.json { render json: @pitch.errors, status: :unprocessable_entity }
-    #   end
-    # end
+    respond_to do |format|
+      if @pitch.save
+        format.html { redirect_to @pitch, notice: 'Pitch was successfully created.' }
+        format.json { render :show, status: :created, location: @pitch }
+      else
+        format.html { render :new }
+        format.json { render json: @pitch.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # PATCH/PUT /pitches/1
@@ -77,9 +77,17 @@ class PitchesController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def pitch_params
-
-      params.require(:pitch).permit(:title, :description, :category, :looking_for)
-      #params.fetch(:pitch, {})
+    def pitch_params params
+      params = ActionController::Parameters.new({
+      pitch: {
+        user_id: current_user.id,
+        title: params[:data],
+        description: params[:name],
+        category: params[:instrument],
+        looking_for: params[:bpm]
+      }
+    })
+      params.require(:pitch).permit(:user_id, :title, :description, :category, :looking_for)
+      #params.fetch(:pitch).permit(:user_id, :title, :description, :category, :looking_for)
     end
 end
