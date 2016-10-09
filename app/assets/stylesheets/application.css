@@ -14,10 +14,15 @@
  *= require_self
 /* */
 
-.intro h1, h2, h3, h4, h5, h6, a{
+body {
+  background-color: #fdfdfd;
+}
+
+.intro h1, h2, h3, h4, h5, h6{
   font-family: 'Open Sans', sans-serif;
   font-weight: 300;
   text-align: center;
+  margin-top: 40px;
 }
 
 .intro {
@@ -26,4 +31,10 @@
 
 .row {
   text-align: center;
+}
+
+.projects h3 {
+  font-weight: 300;
+  text-align: left;
+  margin-left: 30px;
 }
