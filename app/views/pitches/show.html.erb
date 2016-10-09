@@ -15,12 +15,20 @@
 <hr>
 
 <div class ="feedback_form">
-<%= render 'comments/form' %>
+<%= render 'feedbacks/form' %>
 </div>
 
 <div class ="project_feedback_wrapper">
-<% @feedback_list.each do |feedback| %>
-  <div class = "feedback_content"><%=feedback[:content]%></div>
+  <hr>
+<% if @feedback_list %>
+  <% @feedback_list.each do |feedback| %>
+    <div class = "feedback_content"><%=feedback[:content]%></div>
+    <div class = "feedback_autho">by <%=feedback.user.name%><span> On <%=feedback.created_at%></span></div>
+    <button><%= link_to 'Delete', feedback, method: :delete, data: { confirm: 'Are you sure?' } %></button>
+    <hr>
+    <% end %>
+<% else %>
+  <div class = "feedback_content">No Feedback</div>
 <% end %>
 
 </div>

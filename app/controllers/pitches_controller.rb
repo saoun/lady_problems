@@ -12,7 +12,8 @@ class PitchesController < ApplicationController
   # GET /pitches/1.json
   def show
     @pitch = Pitch.find_by_id(params[:id])
-    @feedback_list = Feedback.where(pitch_id: params[:id]).length > 0 ? Feedback.where(pitch_id: params[:id]) : [{:content => "No feedback"}]
+
+    @feedback_list = Feedback.where(pitch_id: params[:id]).order('id DESC')
     @feedback = Feedback.new
   end
 

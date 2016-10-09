@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-
+  resources :feedbacks
+  resources :pitches
   resources :users
 
   resources :boards do
@@ -9,9 +10,9 @@ Rails.application.routes.draw do
 
   resources :comments
 
-  resources :pitches do
-    resources :feedbacks
-  end
+
+
+
 
 
 
