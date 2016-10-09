@@ -20,8 +20,8 @@
   LOOKING FOR:
       <br>
     <% skills_array.each do |skill| %>
-      <%= f.check_box :looking_for, {:multiple => true}, skill %>
-      <%= label :looking_for, skill %>
+      <%= f.check_box :looking_for, {:multiple => true}, skill.tr('_/ ', '').capitalize %>
+      <%= label :pitch_looking_for, skill.tr('_ ', '').downcase  %>
       <br>
     <% end %>
   <br>
