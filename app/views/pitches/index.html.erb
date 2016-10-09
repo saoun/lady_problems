@@ -10,12 +10,20 @@
   </thead>
 
   <tbody>
+    <hr>
     <% @pitches.each do |pitch| %>
-      <tr>
-        <td><%= link_to 'Show', pitch %></td>
-        <td><%= link_to 'Edit', edit_pitch_path(pitch) %></td>
-        <td><%= link_to 'Destroy', pitch, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+
+    <div class = "pitch_index_wrapper">
+    <h2 class = "pitch_index_title"><%=pitch.title%></h2>
+    <p class = "pitch_index_show"><%=pitch.description%></p>
+    <p class = "pitch_index_author">by <%=pitch.user.name%></p>
+      <ul>
+        <button><%= link_to 'Show', pitch %></button>
+        <button><%= link_to 'Edit', edit_pitch_path(pitch) %></button>
+        <button><%= link_to 'Destroy', pitch, method: :delete, data: { confirm: 'Are you sure?' } %></button>
+      </ul>
+    </div>
+    <hr>
     <% end %>
   </tbody>
 </table>
