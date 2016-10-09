@@ -14,3 +14,11 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(document).ready(function(){
+  console.log("hi");
+      $('.carousel').carousel();
+      $('.carousel-slider').slider({full_width: true});
+    });
+
+
