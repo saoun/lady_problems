@@ -5,7 +5,7 @@ class PitchesController < ApplicationController
   # GET /pitches.json
   include PitchesHelper
   def index
-    @pitches = Pitch.all
+    @pitches = Pitch.all.order('id DESC')
   end
 
   # GET /pitches/1

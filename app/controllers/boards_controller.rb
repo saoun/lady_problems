@@ -6,7 +6,7 @@ class BoardsController < ApplicationController
   def index
     @q = Board.ransack(params[:q])
     @searchResults = @q.result
-    @boards = Board.all
+    @boards = Board.all.order('id DESC')
   end
 
   # GET /boards/1
