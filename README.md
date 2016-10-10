@@ -1,24 +1,31 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Talent-Tap is a project built for Angel Hack's Lady Problems hackathon.
+It's a community platform that users can join, create projects, and create discussion boards.
+MVP stage.
 
-Things you may want to cover:
 
-* Ruby version
+## Code
 
-* System dependencies
+Ruby on Rails, HTML, CSS, Javascript, jQuery
 
-* Configuration
+## Configuration & Dependencies
+Clone the repo <br>
+Run:<br>
+``bundle install``<br>
+``rails db:create``<br>
+``rails db:seed``<br>
+``rails db:migrate``<br>
+``rails s``<br>
+Server up and running!
 
-* Database creation
+## Ruby Version
+Rails 4
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## How it works
+Users can sign up and create a profile using OAuth (Twitter, Github, Linkedin, Facebook) <br>
+Users can add skills and expertise<br>
+Users can search and view the profile of other users<br>
+Users can submit a project idea, and ask for feedback<br>
+Users can comment on projects<br>
+Users can create a discussion board and add posts<br>
