@@ -1,7 +1,7 @@
 # README
 
 Talent-Tap is a project built for Angel Hack's Lady Problems hackathon.
-It's a community platform that users can join, create projects, and create discussion boards.
+It's a community platform that users can join, create projects, and create discussion boards.<br>
 MVP stage.
 
 
